@@ -1,0 +1,27 @@
+# --- VERİ SETLERİ (ASLA Yükleme) ---
+data/
+Dataset/
+Ready_Data/
+*.jpg
+*.jpeg
+*.png
+*.bmp
+
+# --- SANAL ORTAM (Çok Kalabalık) ---
+venv/
+env/
+.venv/
+
+# --- PYTHON GEREKSİZLERİ ---
+__pycache__/
+*.pyc
+
+# --- MODEL DOSYALARI (Çok Büyük) ---
+*.keras
+*.h5
+*.tflite
+
+# --- SİSTEM DOSYALARI ---
+.DS_Store
+Thumbs.db
+.vscode/
