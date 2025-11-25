@@ -3,18 +3,14 @@ import shutil
 import random
 from pathlib import Path
 
-# ================= OTOMATİK AYARLAR =================
+# ========== AYARLAR ==========
 
-# 1. Bu dosyanın (prepare.py) nerede olduğunu bul
 MEVCUT_DOSYA = Path(__file__).resolve()
-# Bir üst klasöre çık (src) -> Bir üstüne daha çık (skin-noise-detection)
+
 PROJE_ANA_DIZIN = MEVCUT_DOSYA.parent.parent
 
-# 2. Hedef Klasörü Otomatik Belirle (skin-noise-detection/data)
 HEDEF_KLASOR = PROJE_ANA_DIZIN / "data"
 
-# 3. Kaynak Klasör (Bunu C:\Proje\Dataset olarak varsayıyorum)
-# Eğer klasör adınız farklıysa sadece tırnak içini değiştirin.
 KAYNAK_KLASOR = Path(r"C:\proje\dataset") 
 
 ORANLAR = (0.70, 0.15, 0.15)
@@ -71,10 +67,10 @@ def verileri_dagit():
         }
         
         for tip, liste in splitler.items():
-            # Yolu path objesi ile oluştur (Hata riskini sıfırlar)
+            # Yolu path objesi ile oluştur 
             hedef_yol = HEDEF_KLASOR / tip / sinif
             
-            # Klasörü oluştur (parents=True demek, ara klasörleri de yarat demek)
+            # Klasörü oluştur 
             hedef_yol.mkdir(parents=True, exist_ok=True)
             
             for resim_adi in liste:
@@ -84,7 +80,7 @@ def verileri_dagit():
             
             print(f"   - {tip}: {len(liste)} adet.")
 
-    print("\n✅ İŞLEM BAŞARIYLA TAMAMLANDI!")
+    print("\n İŞLEM BAŞARIYLA TAMAMLANDI!")
 
 if __name__ == "__main__":
     verileri_dagit()
