@@ -11,7 +11,7 @@ PROJE_ANA_DIZIN = MEVCUT_DOSYA.parent.parent
 
 HEDEF_KLASOR = PROJE_ANA_DIZIN / "data"
 
-KAYNAK_KLASOR = Path(r"C:\proje\dataset") 
+KAYNAK_KLASOR = Path(r"C:\proje\datasetv2") 
 
 ORANLAR = (0.70, 0.15, 0.15)
 
