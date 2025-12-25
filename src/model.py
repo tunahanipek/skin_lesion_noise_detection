@@ -100,7 +100,7 @@ def create_optimal_model(input_shape, num_classes):
     
     return model
 
-# Modeli oluştur ve derle
+# Compile the model
 input_shape = (IMG_HEIGHT, IMG_WIDTH, 3)
 model = create_optimal_model(input_shape, NUM_CLASSES)
 

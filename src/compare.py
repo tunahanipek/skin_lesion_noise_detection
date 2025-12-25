@@ -86,7 +86,7 @@ for m_name in MODELS_TO_COMPARE:
 
     model = create_model(m_name, num_classes)
     
-    # JSON hatasını önlemek için metrics'i sildik
+    # For handling JSON error we removed metrics
     model.compile(optimizer=Adam(learning_rate=LEARNING_RATE), loss='categorical_crossentropy')
 
     # Training
