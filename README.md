@@ -11,6 +11,11 @@ The dataset includes five classes representing different types of skin image art
 - **hairy**: Images with visible hair or hair-like artifacts
 - **marked**: Images with markings, labels, or annotations
 
+### Dataset Information
+- **Source**: ISIC Challenge website
+- **Dataset Name**: MILK10k test data
+- **Original Classes**: The original dataset contained 7 classes, but 2 classes were removed due to insufficient data samples. The final dataset uses 5 classes that have adequate representation for training and evaluation.
+
 ## Project Structure
 ```
 skin-noise-detection/
@@ -124,6 +129,16 @@ After running the comparison script, results are saved to:
 - The scripts automatically set up GPU memory growth to prevent OOM errors
 - Pre-trained ImageNet weights are used as the base for transfer learning
 - All models use categorical cross-entropy loss for multi-class classification
+
+## Future Work
+
+Potential improvements and extensions for this project include:
+
+- **MobileNet Parameter Optimization**: Further optimization of MobileNetV2 hyperparameters to improve model performance and reduce inference time on edge devices
+- **Model Quantization**: Implementing model quantization techniques to reduce model size for deployment on mobile and IoT devices
+- **Additional Architectures**: Experimenting with other lightweight architectures such as EfficientNet
+- **Ensemble Methods**: Combining multiple models to improve overall prediction accuracy
+- **Real-time Inference**: Developing a web or mobile application for real-time skin image quality assessment
 
 ## Contributing
 
