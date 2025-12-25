@@ -45,7 +45,8 @@ skin-noise-detection/
 └── src/                    # Source code
     ├── prepare.py         # Data preparation and splitting script
     ├── model.py          # Model architecture and training script
-    └── compare.py        # Model comparison and evaluation script
+    ├── compare.py        # Model comparison and evaluation script
+    └── analyzeerrors.py  # Error analysis and visualization script
 ```
 
 ## Getting Started
@@ -99,6 +100,15 @@ skin-noise-detection/
    ```
 
    This will generate `final_comparison_results.csv` with performance metrics.
+
+5. **Analyze prediction errors:**
+
+   Analyze and visualize model errors on the test set:
+   ```bash
+   python src/analyzeerrors.py
+   ```
+
+   This will generate `errors.txt` with detailed error analysis including misclassified samples and confusion matrices.
 
 ## Model Architectures
 

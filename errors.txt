@@ -1,101 +1,101 @@
 ------------------------------------------------------------
-Hata 1: Kayıp=4.4978
-  Dosya: marked\Milk10k-Test-Input_ISIC_6378518.jpg
-  Gerçek Etiket: marked
-  Tahmin Edilen: clean (%95.71 güvenle)
+Error 1: Loss=4.4978
+  File: marked\Milk10k-Test-Input_ISIC_6378518.jpg
+  True Label: marked
+  Predicted: clean (95.71% confidence)
 ------------------------------------------------------------
-Hata 2: Kayıp=4.3146
-  Dosya: vignet\Milk10k-Test-Input_ISIC_9589755.jpg
-  Gerçek Etiket: vignet
-  Tahmin Edilen: bubble (%35.00 güvenle)
+Error 2: Loss=4.3146
+  File: vignet\Milk10k-Test-Input_ISIC_9589755.jpg
+  True Label: vignet
+  Predicted: bubble (35.00% confidence)
 ------------------------------------------------------------
-Hata 3: Kayıp=4.1710
-  Dosya: vignet\Milk10k-Test-Input_ISIC_8716771.jpg
-  Gerçek Etiket: vignet
-  Tahmin Edilen: clean (%53.71 güvenle)
+Error 3: Loss=4.1710
+  File: vignet\Milk10k-Test-Input_ISIC_8716771.jpg
+  True Label: vignet
+  Predicted: clean (53.71% confidence)
 ------------------------------------------------------------
-Hata 4: Kayıp=3.2803
-  Dosya: pen\Milk10k-Test-Input_ISIC_8596905.jpg
-  Gerçek Etiket: pen
-  Tahmin Edilen: clean (%91.24 güvenle)
+Error 4: Loss=3.2803
+  File: pen\Milk10k-Test-Input_ISIC_8596905.jpg
+  True Label: pen
+  Predicted: clean (91.24% confidence)
 ------------------------------------------------------------
-Hata 5: Kayıp=3.2266
-  Dosya: bubble\Milk10k-Test-Input_ISIC_0534792.jpg
-  Gerçek Etiket: bubble
-  Tahmin Edilen: clean (%73.47 güvenle)
+Error 5: Loss=3.2266
+  File: bubble\Milk10k-Test-Input_ISIC_0534792.jpg
+  True Label: bubble
+  Predicted: clean (73.47% confidence)
 ------------------------------------------------------------
-Hata 6: Kayıp=3.0237
-  Dosya: pen\Milk10k-Test-Input_ISIC_4136945.jpg
-  Gerçek Etiket: pen
-  Tahmin Edilen: clean (%73.02 güvenle)
+Error 6: Loss=3.0237
+  File: pen\Milk10k-Test-Input_ISIC_4136945.jpg
+  True Label: pen
+  Predicted: clean (73.02% confidence)
 ------------------------------------------------------------
-Hata 7: Kayıp=3.0001
-  Dosya: clean\Milk10k-Test-Input_ISIC_7808001.jpg
-  Gerçek Etiket: clean
-  Tahmin Edilen: hairy (%89.35 güvenle)
+Error 7: Loss=3.0001
+  File: clean\Milk10k-Test-Input_ISIC_7808001.jpg
+  True Label: clean
+  Predicted: hairy (89.35% confidence)
 ------------------------------------------------------------
-Hata 8: Kayıp=2.9743
-  Dosya: pen\Milk10k-Test-Input_ISIC_4361032.jpg
-  Gerçek Etiket: pen
-  Tahmin Edilen: clean (%78.96 güvenle)
+Error 8: Loss=2.9743
+  File: pen\Milk10k-Test-Input_ISIC_4361032.jpg
+  True Label: pen
+  Predicted: clean (78.96% confidence)
 ------------------------------------------------------------
-Hata 9: Kayıp=2.8553
-  Dosya: hairy\Milk10k-Test-Input_ISIC_4310983.jpg
-  Gerçek Etiket: hairy
-  Tahmin Edilen: blurry (%64.28 güvenle)
+Error 9: Loss=2.8553
+  File: hairy\Milk10k-Test-Input_ISIC_4310983.jpg
+  True Label: hairy
+  Predicted: blurry (64.28% confidence)
 ------------------------------------------------------------
-Hata 10: Kayıp=2.3927
-  Dosya: hairy\Milk10k-Test-Input_ISIC_4885912.jpg
-  Gerçek Etiket: hairy
-  Tahmin Edilen: marked (%46.45 güvenle)
+Error 10: Loss=2.3927
+  File: hairy\Milk10k-Test-Input_ISIC_4885912.jpg
+  True Label: hairy
+  Predicted: marked (46.45% confidence)
 ------------------------------------------------------------
-Hata 11: Kayıp=2.3630
-  Dosya: pen\Milk10k-Test-Input_ISIC_1139645.jpg
-  Gerçek Etiket: pen
-  Tahmin Edilen: clean (%49.88 güvenle)
+Error 11: Loss=2.3630
+  File: pen\Milk10k-Test-Input_ISIC_1139645.jpg
+  True Label: pen
+  Predicted: clean (49.88% confidence)
 ------------------------------------------------------------
-Hata 12: Kayıp=2.3450
-  Dosya: clean\Milk10k-Test-Input_ISIC_8104489.jpg
-  Gerçek Etiket: clean
-  Tahmin Edilen: hairy (%35.46 güvenle)
+Error 12: Loss=2.3450
+  File: clean\Milk10k-Test-Input_ISIC_8104489.jpg
+  True Label: clean
+  Predicted: hairy (35.46% confidence)
 ------------------------------------------------------------
-Hata 13: Kayıp=2.1517
-  Dosya: hairy\Milk10k-Test-Input_ISIC_2548992.jpg
-  Gerçek Etiket: hairy
-  Tahmin Edilen: clean (%79.82 güvenle)
+Error 13: Loss=2.1517
+  File: hairy\Milk10k-Test-Input_ISIC_2548992.jpg
+  True Label: hairy
+  Predicted: clean (79.82% confidence)
 ------------------------------------------------------------
-Hata 14: Kayıp=1.9714
-  Dosya: bubble\Milk10k-Test-Input_ISIC_1778510.jpg
-  Gerçek Etiket: bubble
-  Tahmin Edilen: hairy (%60.71 güvenle)
+Error 14: Loss=1.9714
+  File: bubble\Milk10k-Test-Input_ISIC_1778510.jpg
+  True Label: bubble
+  Predicted: hairy (60.71% confidence)
 ------------------------------------------------------------
-Hata 15: Kayıp=1.9370
-  Dosya: hairy\Milk10k-Test-Input_ISIC_3495124.jpg
-  Gerçek Etiket: hairy
-  Tahmin Edilen: clean (%48.17 güvenle)
+Error 15: Loss=1.9370
+  File: hairy\Milk10k-Test-Input_ISIC_3495124.jpg
+  True Label: hairy
+  Predicted: clean (48.17% confidence)
 ------------------------------------------------------------
-Hata 16: Kayıp=1.9231
-  Dosya: pen\Milk10k-Test-Input_ISIC_9368948.jpg
-  Gerçek Etiket: pen
-  Tahmin Edilen: clean (%46.94 güvenle)
+Error 16: Loss=1.9231
+  File: pen\Milk10k-Test-Input_ISIC_9368948.jpg
+  True Label: pen
+  Predicted: clean (46.94% confidence)
 ------------------------------------------------------------
-Hata 17: Kayıp=1.8817
-  Dosya: bubble\Milk10k-Test-Input_ISIC_5247016.jpg
-  Gerçek Etiket: bubble
-  Tahmin Edilen: hairy (%69.50 güvenle)
+Error 17: Loss=1.8817
+  File: bubble\Milk10k-Test-Input_ISIC_5247016.jpg
+  True Label: bubble
+  Predicted: hairy (69.50% confidence)
 ------------------------------------------------------------
-Hata 18: Kayıp=1.8109
-  Dosya: bubble\Milk10k-Test-Input_ISIC_4764344.jpg
-  Gerçek Etiket: bubble
-  Tahmin Edilen: clean (%46.36 güvenle)
+Error 18: Loss=1.8109
+  File: bubble\Milk10k-Test-Input_ISIC_4764344.jpg
+  True Label: bubble
+  Predicted: clean (46.36% confidence)
 ------------------------------------------------------------
-Hata 19: Kayıp=1.7957
-  Dosya: clean\Milk10k-Test-Input_ISIC_0347700.jpg
-  Gerçek Etiket: clean
-  Tahmin Edilen: bubble (%56.73 güvenle)
+Error 19: Loss=1.7957
+  File: clean\Milk10k-Test-Input_ISIC_0347700.jpg
+  True Label: clean
+  Predicted: bubble (56.73% confidence)
 ------------------------------------------------------------
-Hata 20: Kayıp=1.7827
-  Dosya: marked\Milk10k-Test-Input_ISIC_8510743.jpg
-  Gerçek Etiket: marked
-  Tahmin Edilen: bubble (%28.71 güvenle)
+Error 20: Loss=1.7827
+  File: marked\Milk10k-Test-Input_ISIC_8510743.jpg
+  True Label: marked
+  Predicted: bubble (28.71% confidence)
 ------------------------------------------------------------
