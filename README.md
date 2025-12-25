@@ -1,71 +1,134 @@
-# Skin and Noise Detection Project
+# Skin Noise Detection Project
 
 ## Overview
-This project aims to develop a robust model for noise detection in skin lesion images. The model will be trained using a dataset that includes various images, and it will be evaluated on its ability to accurately identify skin regions and detect noise.
+This project aims to develop a robust model for detecting noise and artifacts in skin lesion images. The model is trained on a comprehensive dataset and evaluated on its ability to accurately classify various types of skin image defects and quality issues.
 
-## Classes
-The dataset is divided into the following classes:
-- band
-- bubble
-- clean
-- hairy
-- marked
+## Dataset Classes
+The dataset includes five classes representing different types of skin image artifacts and conditions:
+- **blurry**: Blurry or out-of-focus images
+- **bubble**: Bubble or air gap artifacts
+- **clean**: Clean, high-quality images without artifacts
+- **hairy**: Images with visible hair or hair-like artifacts
+- **marked**: Images with markings, labels, or annotations
 
 ## Project Structure
-The project is organized into the following directories and files:
+```
+skin-noise-detection/
+├── best_model_*.h5          # Pre-trained model files for different architectures
+├── final_comparison_results.csv  # Comparison results between models
+├── README.md               # This file
+├── requirements.txt        # Python dependencies
+├── data/                   # Dataset directory (created by prepare script)
+│   ├── train/             # Training dataset
+│   │   ├── blurry/
+│   │   ├── bubble/
+│   │   ├── clean/
+│   │   ├── hairy/
+│   │   └── marked/
+│   ├── validation/        # Validation dataset
+│   │   ├── blurry/
+│   │   ├── bubble/
+│   │   ├── clean/
+│   │   ├── hairy/
+│   │   └── marked/
+│   └── test/              # Test dataset
+│       ├── blurry/
+│       ├── bubble/
+│       ├── clean/
+│       ├── hairy/
+│       └── marked/
+└── src/                    # Source code
+    ├── prepare.py         # Data preparation and splitting script
+    ├── model.py          # Model architecture and training script
+    └── compare.py        # Model comparison and evaluation script
+```
 
-- **data/**: Contains the datasets used for training, testing, and validation.
-  - **train/**: Training dataset (created by the prepare script).
-  - **test/**: Testing dataset (created by the prepare script).
-  - **validation/**: Validation dataset (created by the prepare script).
+## Getting Started
 
-- **notebooks/**: Contains Jupyter notebooks for exploratory data analysis, model training, and evaluation.
-  - **skin_noise_detection.ipynb**: Main notebook for analysis and model development.
+### Prerequisites
+- Python 3.8 or higher
+- TensorFlow/Keras
+- Required Python packages (see requirements.txt)
 
-- **src/**: Contains source code for the project.
-  - **preprocessing.py**: Functions for data preprocessing, including loading datasets, data augmentation, and normalization.
-  - **model.py**: Defines the model architecture for skin and noise detection, including training and evaluation logic.
-  - **utils.py**: Utility functions for logging, metrics calculation, and visualization.
-  - **train.py**: Script to train the model using MobileNetV2 transfer learning.
-  - **prepare.py**: Script to organize data from raw dataset into train/test/validation splits.
+### Installation and Setup
 
-- **requirements.txt**: Lists the Python packages required for the project.
-
-## How to use the project
-1. Place your raw dataset in `C:\proje\dataset\` with one subfolder per class:
-   - C:\proje\dataset\band\
-   - C:\proje\dataset\bubble\
-   - C:\proje\dataset\clean\
-   - C:\proje\dataset\hairy\
-   - C:\proje\dataset\marked\
-
-2. Install dependencies:
-   ```
+1. **Install dependencies:**
+   ```bash
    pip install -r requirements.txt
    ```
 
-3. Run the preparation script from project root:
+2. **Prepare the dataset:**
+   
+   Place your raw dataset in the source directory following this structure:
    ```
-   python src\prepare.py
+   C:\proje\datasetv2\
+   ├── blurry/
+   ├── bubble/
+   ├── clean/
+   ├── hairy/
+   └── marked/
    ```
 
-4. Run the training script:
-   ```
-   python src\train.py
+   Then run the preparation script:
+   ```bash
+   python src/prepare.py
    ```
 
-5. Verify resulting folders in `data/`:
-   - data/train/<class>/
-   - data/validation/<class>/
-   - data/test/<class>/
+   This script will:
+   - Automatically detect all class folders
+   - Split images into train/validation/test sets (70%/15%/15%)
+   - Organize them into the `data/` directory
 
-## Usage Guidelines
-- Use `notebooks/skin_noise_detection.ipynb` for exploration and model experiments.
-- Modify `src/preprocessing.py`, `src/model.py`, and `src/utils.py` as needed.
-- Keep large raw data out of Git (add `data/` to `.gitignore`).
+3. **Train the model:**
+
+   Using MobileNetV2 transfer learning:
+   ```bash
+   python src/model.py
+   ```
+
+4. **Compare multiple models:**
+
+   Compare different architectures (MobileNetV2, ResNet50, NASNetMobile):
+   ```bash
+   python src/compare.py
+   ```
+
+   This will generate `final_comparison_results.csv` with performance metrics.
+
+## Model Architectures
+
+The project supports multiple pre-trained architectures for transfer learning:
+
+- **MobileNetV2**: Lightweight model optimized for mobile and edge devices
+- **ResNet50**: Deep residual network with 50 layers
+- **NASNetMobile**: Mobile-optimized neural architecture search model
+
+## Training Configuration
+
+Key hyperparameters can be adjusted in the scripts:
+- **Image Size**: 224x224 pixels (or 450x600 for model.py)
+- **Batch Size**: 32
+- **Epochs**: 50 (compare.py) or 30 (model.py)
+- **Learning Rate**: 0.0001
+- **Data Augmentation**: Rotation, zoom, horizontal flip, and shift
+
+## Output
+
+After running the comparison script, results are saved to:
+- **Models**: `best_model_mobilenetv2.h5`, `best_model_resnet50.h5`, `best_model_nasnetmobile.h5`
+- **Results**: `final_comparison_results.csv` containing accuracy, F1-score, precision, and recall
+
+## Notes
+
+- GPU acceleration is recommended for faster training
+- The scripts automatically set up GPU memory growth to prevent OOM errors
+- Pre-trained ImageNet weights are used as the base for transfer learning
+- All models use categorical cross-entropy loss for multi-class classification
 
 ## Contributing
-Contributions are welcome. Submit a pull request with changes and a brief description.
+
+Contributions are welcome. Please feel free to submit pull requests with improvements, bug fixes, or new features.
 
 ## License
-This project is licensed under the MIT License.
+
+This project is licensed under the MIT License - see the LICENSE file for details.

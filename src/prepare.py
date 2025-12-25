@@ -3,84 +3,84 @@ import shutil
 import random
 from pathlib import Path
 
-# ========== AYARLAR ==========
+# ========== CONFIGURATION ==========
 
-MEVCUT_DOSYA = Path(__file__).resolve()
+CURRENT_FILE = Path(__file__).resolve()
 
-PROJE_ANA_DIZIN = MEVCUT_DOSYA.parent.parent
+PROJECT_ROOT_DIR = CURRENT_FILE.parent.parent
 
-HEDEF_KLASOR = PROJE_ANA_DIZIN / "data"
+TARGET_FOLDER = PROJECT_ROOT_DIR / "data"
 
-KAYNAK_KLASOR = Path(r"C:\proje\datasetv2") 
+SOURCE_FOLDER = Path(r"C:\proje\datasetv2") 
 
-ORANLAR = (0.70, 0.15, 0.15)
+SPLIT_RATIOS = (0.70, 0.15, 0.15)
 
 # ====================================================
 
-def verileri_dagit():
-    print(f"--- YOL KONTROLÜ ---")
-    print(f"Kodun Çalıştığı Yer: {PROJE_ANA_DIZIN}")
-    print(f"Kaynak Veri Yolu   : {KAYNAK_KLASOR}")
-    print(f"Hedef Veri Yolu    : {HEDEF_KLASOR}")
+def distribute_data():
+    print(f"--- PATH VERIFICATION ---")
+    print(f"Working Directory  : {PROJECT_ROOT_DIR}")
+    print(f"Source Data Path   : {SOURCE_FOLDER}")
+    print(f"Target Data Path   : {TARGET_FOLDER}")
     print(f"--------------------")
 
-    # 1. Kaynak Kontrolü
-    if not KAYNAK_KLASOR.exists():
-        print(f"HATA: Kaynak klasör bulunamadı!\nAranan yer: {KAYNAK_KLASOR}")
-        print("Lütfen C:\\Proje klasörünün içinde 'Dataset' adında klasör olduğundan emin olun.")
+    # 1. Verify source folder
+    if not SOURCE_FOLDER.exists():
+        print(f"ERROR: Source folder not found!\nLooking for: {SOURCE_FOLDER}")
+        print("Please ensure 'Dataset' folder exists inside C:\\proje directory.")
         return
 
-    # 2. Hedef Klasörü Temizle (Varsa sil, yeniden oluştur)
-    if HEDEF_KLASOR.exists():
+    # 2. Clean target folder (delete if exists, recreate)
+    if TARGET_FOLDER.exists():
         try:
-            shutil.rmtree(HEDEF_KLASOR)
-            print("Eski data klasörü temizlendi.")
+            shutil.rmtree(TARGET_FOLDER)
+            print("Old data folder cleaned.")
         except Exception as e:
-            print(f"Uyarı: Eski klasör silinemedi ({e}), üzerine yazılacak.")
+            print(f"Warning: Old folder could not be deleted ({e}), will overwrite.")
     
-    # 3. Sınıfları Bul
-    siniflar = [x.name for x in KAYNAK_KLASOR.iterdir() if x.is_dir()]
-    print(f"Bulunan Sınıflar: {siniflar}")
+    # 3. Find classes
+    classes = [x.name for x in SOURCE_FOLDER.iterdir() if x.is_dir()]
+    print(f"Found Classes: {classes}")
 
-    if not siniflar:
-        print("HATA: Kaynak klasörde hiç sınıf (alt klasör) bulunamadı!")
+    if not classes:
+        print("ERROR: No classes (subfolders) found in source folder!")
         return
 
-    # 4. Dağıtım Başlıyor
-    for sinif in siniflar:
-        print(f"\n--> '{sinif}' sınıfı işleniyor...")
+    # 4. Start distribution
+    for class_name in classes:
+        print(f"\nProcessing class '{class_name}' ...")
         
-        kaynak_sinif_yolu = KAYNAK_KLASOR / sinif
-        # Sadece resim dosyalarını al
-        resimler = [f.name for f in kaynak_sinif_yolu.glob("*") if f.suffix.lower() in ['.jpg', '.jpeg', '.png', '.bmp']]
+        source_class_path = SOURCE_FOLDER / class_name
+        # Get only image files
+        images = [f.name for f in source_class_path.glob("*") if f.suffix.lower() in ['.jpg', '.jpeg', '.png', '.bmp']]
         
-        random.shuffle(resimler)
+        random.shuffle(images)
         
-        toplam = len(resimler)
-        train_end = int(toplam * ORANLAR[0])
-        val_end = train_end + int(toplam * ORANLAR[1])
+        total = len(images)
+        train_end = int(total * SPLIT_RATIOS[0])
+        val_end = train_end + int(total * SPLIT_RATIOS[1])
         
-        splitler = {
-            'train': resimler[:train_end],
-            'validation': resimler[train_end:val_end],
-            'test': resimler[val_end:]
+        splits = {
+            'train': images[:train_end],
+            'validation': images[train_end:val_end],
+            'test': images[val_end:]
         }
         
-        for tip, liste in splitler.items():
-            # Yolu path objesi ile oluştur 
-            hedef_yol = HEDEF_KLASOR / tip / sinif
+        for split_type, file_list in splits.items():
+            # Create path using path object
+            target_path = TARGET_FOLDER / split_type / class_name
             
-            # Klasörü oluştur 
-            hedef_yol.mkdir(parents=True, exist_ok=True)
+            # Create folder
+            target_path.mkdir(parents=True, exist_ok=True)
             
-            for resim_adi in liste:
-                src = kaynak_sinif_yolu / resim_adi
-                dst = hedef_yol / resim_adi
+            for image_name in file_list:
+                src = source_class_path / image_name
+                dst = target_path / image_name
                 shutil.copy2(src, dst)
             
-            print(f"   - {tip}: {len(liste)} adet.")
+            print(f"   - {split_type}: {len(file_list)} files.")
 
-    print("\n İŞLEM BAŞARIYLA TAMAMLANDI!")
+    print("\nPROCESS COMPLETED SUCCESSFULLY!")
 
 if __name__ == "__main__":
-    verileri_dagit()
+    distribute_data()

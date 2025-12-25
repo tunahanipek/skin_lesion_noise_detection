@@ -1,0 +1,101 @@
+------------------------------------------------------------
+Hata 1: Kayıp=4.4978
+  Dosya: marked\Milk10k-Test-Input_ISIC_6378518.jpg
+  Gerçek Etiket: marked
+  Tahmin Edilen: clean (%95.71 güvenle)
+------------------------------------------------------------
+Hata 2: Kayıp=4.3146
+  Dosya: vignet\Milk10k-Test-Input_ISIC_9589755.jpg
+  Gerçek Etiket: vignet
+  Tahmin Edilen: bubble (%35.00 güvenle)
+------------------------------------------------------------
+Hata 3: Kayıp=4.1710
+  Dosya: vignet\Milk10k-Test-Input_ISIC_8716771.jpg
+  Gerçek Etiket: vignet
+  Tahmin Edilen: clean (%53.71 güvenle)
+------------------------------------------------------------
+Hata 4: Kayıp=3.2803
+  Dosya: pen\Milk10k-Test-Input_ISIC_8596905.jpg
+  Gerçek Etiket: pen
+  Tahmin Edilen: clean (%91.24 güvenle)
+------------------------------------------------------------
+Hata 5: Kayıp=3.2266
+  Dosya: bubble\Milk10k-Test-Input_ISIC_0534792.jpg
+  Gerçek Etiket: bubble
+  Tahmin Edilen: clean (%73.47 güvenle)
+------------------------------------------------------------
+Hata 6: Kayıp=3.0237
+  Dosya: pen\Milk10k-Test-Input_ISIC_4136945.jpg
+  Gerçek Etiket: pen
+  Tahmin Edilen: clean (%73.02 güvenle)
+------------------------------------------------------------
+Hata 7: Kayıp=3.0001
+  Dosya: clean\Milk10k-Test-Input_ISIC_7808001.jpg
+  Gerçek Etiket: clean
+  Tahmin Edilen: hairy (%89.35 güvenle)
+------------------------------------------------------------
+Hata 8: Kayıp=2.9743
+  Dosya: pen\Milk10k-Test-Input_ISIC_4361032.jpg
+  Gerçek Etiket: pen
+  Tahmin Edilen: clean (%78.96 güvenle)
+------------------------------------------------------------
+Hata 9: Kayıp=2.8553
+  Dosya: hairy\Milk10k-Test-Input_ISIC_4310983.jpg
+  Gerçek Etiket: hairy
+  Tahmin Edilen: blurry (%64.28 güvenle)
+------------------------------------------------------------
+Hata 10: Kayıp=2.3927
+  Dosya: hairy\Milk10k-Test-Input_ISIC_4885912.jpg
+  Gerçek Etiket: hairy
+  Tahmin Edilen: marked (%46.45 güvenle)
+------------------------------------------------------------
+Hata 11: Kayıp=2.3630
+  Dosya: pen\Milk10k-Test-Input_ISIC_1139645.jpg
+  Gerçek Etiket: pen
+  Tahmin Edilen: clean (%49.88 güvenle)
+------------------------------------------------------------
+Hata 12: Kayıp=2.3450
+  Dosya: clean\Milk10k-Test-Input_ISIC_8104489.jpg
+  Gerçek Etiket: clean
+  Tahmin Edilen: hairy (%35.46 güvenle)
+------------------------------------------------------------
+Hata 13: Kayıp=2.1517
+  Dosya: hairy\Milk10k-Test-Input_ISIC_2548992.jpg
+  Gerçek Etiket: hairy
+  Tahmin Edilen: clean (%79.82 güvenle)
+------------------------------------------------------------
+Hata 14: Kayıp=1.9714
+  Dosya: bubble\Milk10k-Test-Input_ISIC_1778510.jpg
+  Gerçek Etiket: bubble
+  Tahmin Edilen: hairy (%60.71 güvenle)
+------------------------------------------------------------
+Hata 15: Kayıp=1.9370
+  Dosya: hairy\Milk10k-Test-Input_ISIC_3495124.jpg
+  Gerçek Etiket: hairy
+  Tahmin Edilen: clean (%48.17 güvenle)
+------------------------------------------------------------
+Hata 16: Kayıp=1.9231
+  Dosya: pen\Milk10k-Test-Input_ISIC_9368948.jpg
+  Gerçek Etiket: pen
+  Tahmin Edilen: clean (%46.94 güvenle)
+------------------------------------------------------------
+Hata 17: Kayıp=1.8817
+  Dosya: bubble\Milk10k-Test-Input_ISIC_5247016.jpg
+  Gerçek Etiket: bubble
+  Tahmin Edilen: hairy (%69.50 güvenle)
+------------------------------------------------------------
+Hata 18: Kayıp=1.8109
+  Dosya: bubble\Milk10k-Test-Input_ISIC_4764344.jpg
+  Gerçek Etiket: bubble
+  Tahmin Edilen: clean (%46.36 güvenle)
+------------------------------------------------------------
+Hata 19: Kayıp=1.7957
+  Dosya: clean\Milk10k-Test-Input_ISIC_0347700.jpg
+  Gerçek Etiket: clean
+  Tahmin Edilen: bubble (%56.73 güvenle)
+------------------------------------------------------------
+Hata 20: Kayıp=1.7827
+  Dosya: marked\Milk10k-Test-Input_ISIC_8510743.jpg
+  Gerçek Etiket: marked
+  Tahmin Edilen: bubble (%28.71 güvenle)
+------------------------------------------------------------
