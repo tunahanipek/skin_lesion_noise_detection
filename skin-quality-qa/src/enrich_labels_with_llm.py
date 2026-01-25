@@ -10,6 +10,9 @@ import os
 import sys
 import time
 import json
+import base64
+from PIL import Image
+import io
 from tqdm import tqdm
 
 # Import configuration
@@ -35,6 +38,7 @@ def setup_model():
 def analyze_image_with_retry(model, img_path, retries=RETRY_ATTEMPTS):
     """
     Analyze image with LLM, retry on failure with exponential backoff.
+    Uses inline image data instead of file upload to reduce API calls.
     
     Args:
         model: Generative AI model instance
@@ -45,7 +49,7 @@ def analyze_image_with_retry(model, img_path, retries=RETRY_ATTEMPTS):
         dict: Analysis results or None if all retries failed
     """
     
-    prompt = f"""
+    prompt = """
     Sen uzman bir dermatologsun. Bu dermoskopik görüntüyü teknik kalite açısından analiz et.
     Sadece aşağıdaki görsel kusurlar var mı yok mu (1 veya 0) karar ver.
     
@@ -58,41 +62,54 @@ def analyze_image_with_retry(model, img_path, retries=RETRY_ATTEMPTS):
     - gel_border: Jel sınırları veya sıvı baloncuk kenarları var mı?
 
     Cevabını SADECE şu JSON formatında ver, başka hiçbir şey yazma:
-    {{
+    {
         "blurry": 0,
         "hairy": 0,
         "bubble": 0,
         "ruler": 0,
         "vignette": 0,
         "gel_border": 0
-    }}
+    }
     """
+
+    # Load image as base64 (single API call instead of upload + generate)
+    try:
+        with open(img_path, "rb") as f:
+            image_data = f.read()
+        
+        # Determine mime type
+        if img_path.lower().endswith('.png'):
+            mime_type = "image/png"
+        else:
+            mime_type = "image/jpeg"
+            
+        image_part = {
+            "mime_type": mime_type,
+            "data": image_data
+        }
+    except Exception as e:
+        print(f"\n❌ Dosya okuma hatası: {e}")
+        return None
 
     for attempt in range(retries):
         try:
-            # Upload file
-            sample_file = genai.upload_file(path=img_path, display_name="Skin Image")
-            
-            # Analyze
-            response = model.generate_content([sample_file, prompt])
+            # Single API call with inline image
+            response = model.generate_content([image_part, prompt])
             
             # Parse JSON response
             text = response.text.replace("```json", "").replace("```", "").strip()
             result = json.loads(text)
-            
-            # Clean up cloud storage
-            sample_file.delete()
             
             return result
             
         except Exception as e:
             error_msg = str(e)
             # Check for quota errors
-            if "429" in error_msg or "quota" in error_msg.lower():
-                # Exponential backoff: 30s, 60s, 120s, 240s, 480s
+            if "429" in error_msg or "quota" in error_msg.lower() or "resource" in error_msg.lower():
+                # Exponential backoff: 60s, 120s, 240s, 480s, 960s
                 wait_time = RETRY_DELAY_BASE * (2 ** attempt)
                 print(f"\n⚠️  QUOTA AŞILDI! {wait_time} saniye bekleniyor... ({attempt+1}/{retries})")
-                print(f"💡 İpucu: API kota limitleri aşıldı. Ücretli plana geçmeyi düşünün.")
+                print(f"💡 İpucu: API kota limitleri aşıldı. Biraz bekleyin veya ücretli plana geçin.")
                 time.sleep(wait_time)
             else:
                 # Other errors - shorter wait
@@ -109,7 +126,8 @@ def get_unprocessed_count(df, artifacts):
     unprocessed = 0
     for _, row in df.iterrows():
         if all(row[col] == 0 for col in artifacts):
-            if os.path.exists(row['filename']):
+            img_path = os.path.join("data", row['filename'])
+            if os.path.exists(img_path):
                 unprocessed += 1
     return unprocessed
 
@@ -163,7 +181,7 @@ def main(daily_limit=DEFAULT_DAILY_LIMIT):
             print(f"⏰ Yarın tekrar çalıştırabilirsin.")
             break
         
-        img_path = row['filename']
+        img_path = os.path.join("data", row['filename'])
         
         # Skip if already processed
         if any(row[col] == 1 for col in IMAGE_ARTIFACTS):
@@ -173,10 +191,7 @@ def main(daily_limit=DEFAULT_DAILY_LIMIT):
         if not os.path.exists(img_path):
             continue
 
-        # Rate limit protection (RPM limit: ~15/min = 1 per 4 seconds, safe: 6 seconds)
-        time.sleep(REQUEST_DELAY)
-        
-        # Analyze
+        # Analyze (API call)
         result = analyze_image_with_retry(model, img_path)
         
         if result:
@@ -185,6 +200,10 @@ def main(daily_limit=DEFAULT_DAILY_LIMIT):
                 val = result.get(key, 0)
                 df.at[index, key] = val
             processed_today += 1
+            
+            # Rate limit: wait AFTER successful request before next one
+            print(f"   ⏳ {REQUEST_DELAY}s bekleniyor (rate limit)...")
+            time.sleep(REQUEST_DELAY)
                 
         # Save every 3 images (protect against power loss)
         if processed_today % 3 == 0:

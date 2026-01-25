@@ -25,9 +25,9 @@ MODELS_DIR = "./models"
 
 # Processing settings
 DEFAULT_DAILY_LIMIT = 40  # Images per day (free tier safe limit)
-REQUEST_DELAY = 6  # Seconds between requests (for RPM limit)
+REQUEST_DELAY = 15  # Seconds between requests (for RPM limit - increased for free tier)
 RETRY_ATTEMPTS = 5
-RETRY_DELAY_BASE = 30  # Base delay in seconds for exponential backoff
+RETRY_DELAY_BASE = 60  # Base delay in seconds for exponential backoff
 
 # Log settings
 LOG_DIR = "./logs"
